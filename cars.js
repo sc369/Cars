@@ -1287,10 +1287,14 @@ const cars = [
 // Which salesperson made the most profit?
 // Which model was the most popular?
 // Which bank provided the most loans to our customers?
-const totalProfit = cars
-    .map(car => car.gross_profit)
-    .reduce((a, b) => a + b)
-console.log(totalProfit)
+
+
+const soldIn2017 = cars
+.filter(car => car.purchase_date.split("-")[0] === "2017")
+.map(car => car.gross_profit)
+.reduce((a, b) => a + b)
+console.log(soldIn2017)
+
 
 let sortedMonths = {}
 const months = cars.map(car => car.purchase_date.split("-")[1])
@@ -1315,11 +1319,12 @@ let sortedAgents = {}
 agentNames.forEach((agent) => {
 (sortedAgents[agent] = (sortedAgents[agent] + 1) || 1)
 })
-
 //find greatest number of sales
- let arr = Object.values(sortedAgents);
- let max = Math.max(...arr);
-//  console.log(`max value: ${max}` );
+ let agentSales = Object.values(sortedAgents);
+ console.log(agentSales)
+ let max = Math.max(...agentSales);
+ console.log(`max value: ${max}` );
+
 //find agent with greatest number of sales
 const bestAgent = Object.keys(sortedAgents).reduce((a, b) => {
 return sortedAgents[a] > sortedAgents[b] ? a : b})
